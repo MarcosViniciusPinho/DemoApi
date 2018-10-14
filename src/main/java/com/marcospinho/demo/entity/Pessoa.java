@@ -1,9 +1,7 @@
 package com.marcospinho.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +11,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = {"nome", "sobrenome", "idade"})
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "pessoa")
