@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.TransactionSystemException;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
@@ -80,6 +81,7 @@ public class PessoaRepositoryTest extends IntegrationSource {
     public void testSave_SucessUpdateComSobrenomeEmBranco() {
         Optional<Pessoa> pessoa = this.repository.findById(2L);
         pessoa.get().setNome("Sabrina3");
+        pessoa.get().setSobrenome(null);
 
         Pessoa pessoaSalva = this.repository.save(pessoa.get());
         Assert.assertEquals(pessoa.get(), pessoaSalva);
@@ -89,6 +91,34 @@ public class PessoaRepositoryTest extends IntegrationSource {
     public void testSave_ExceptionUpdateQuandoNaoExistePessoa() {
         Optional<Pessoa> pessoa = this.repository.findById(10L);
         this.repository.save(pessoa.get());
+    }
+
+    @Test(expected = TransactionSystemException.class)
+    public void testSave_ExceptionUpdateSemNome() {
+        Optional<Pessoa> pessoa = this.repository.findById(2L);
+        pessoa.get().setNome(null);
+
+        this.repository.save(pessoa.get());
+    }
+
+    @Test(expected = TransactionSystemException.class)
+    public void testSave_ExceptionUpdateSemIdade() {
+        Optional<Pessoa> pessoa = this.repository.findById(2L);
+        pessoa.get().setIdade(null);
+
+        this.repository.save(pessoa.get());
+    }
+
+    @Test
+    public void testDelete_Sucess() {
+        Optional<Pessoa> pessoa = this.repository.findById(1L);
+        this.repository.delete(pessoa.get());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testDelete_ExceptionQuandoNaoExistePessoa() {
+        Optional<Pessoa> pessoa = this.repository.findById(10L);
+        this.repository.delete(pessoa.get());
     }
 
 }
