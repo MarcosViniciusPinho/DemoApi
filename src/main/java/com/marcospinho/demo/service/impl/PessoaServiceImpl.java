@@ -25,6 +25,7 @@ public class PessoaServiceImpl implements PessoaService {
      */
     @Override
     public Optional<Pessoa> create(Pessoa pessoa) {
+        pessoa.setId(null);//Para garantir se o usuário forçar um id na requisição o código ignorar.
         return Optional.of(this.repository.save(pessoa));
     }
 
