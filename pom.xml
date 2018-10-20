@@ -23,6 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
+		<cucumber-version>1.2.4</cucumber-version>
 		<mysql-version>8.0.12</mysql-version>
 		<h2-version>1.4.197</h2-version>
 		<flyway-maven-plugin.version>4.0.3</flyway-maven-plugin.version>
@@ -47,13 +48,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-version}</version>
 		</dependency>
-		<!--Para ser usado somente para teste de integração-->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${h2-version}</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -62,6 +56,34 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!--Para ser usado somente para teste de integração-->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2-version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--Testes BDDs-->
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber-version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
