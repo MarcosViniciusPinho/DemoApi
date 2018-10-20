@@ -13,9 +13,9 @@ Funcionalidade: Cadastrar uma nova pessoa
 
         Exemplos: 
             |     nome          |   idade     |                         resultado                           |
-#            |                   |   null      |       Informações obrigatórias ainda não foram informadas   |
-#            |     Marcos        |   null      |       Informações obrigatórias ainda não foram informadas   |
-#            |                   |    32       |       Informações obrigatórias ainda não foram informadas   |
+            |                   |     0       |       Informações obrigatórias ainda não foram informadas   |
+            |     Marcos        |     0       |       Informações obrigatórias ainda não foram informadas   |
+            |                   |    32       |       Informações obrigatórias ainda não foram informadas   |
             |     Marcos        |    32       |       Pessoa cadastrada com sucesso                         |
 
     
