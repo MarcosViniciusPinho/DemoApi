@@ -3,7 +3,6 @@ package com.marcospinho.demo.service.impl;
 import com.marcospinho.demo.entity.Pessoa;
 import com.marcospinho.demo.repository.PessoaRepository;
 import com.marcospinho.demo.service.PessoaService;
-import com.marcospinho.demo.service.exception.NotEqualsRecurseException;
 import com.marcospinho.demo.service.exception.RecurseNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +30,8 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public Optional<Pessoa> update(Long id, Pessoa pessoa) {
-        Optional<Pessoa> pessoaEncontrada = this.valid(id);
-        if(!pessoaEncontrada.get().equals(pessoa)) {
-            throw new NotEqualsRecurseException("Houve um erro ao alterar um recurso", "O recurso solicitado é diferente do informado");
-        }
+        this.valid(id);
+        pessoa.setId(id);
         return Optional.of(this.repository.save(pessoa));
     }
 

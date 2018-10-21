@@ -2,7 +2,6 @@ package com.marcospinho.demo.bdd.steps;
 
 import com.marcospinho.demo.entity.Pessoa;
 import com.marcospinho.demo.service.PessoaService;
-import com.marcospinho.demo.service.exception.NotEqualsRecurseException;
 import com.marcospinho.demo.service.exception.RecurseNotFoundException;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
@@ -13,10 +12,8 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.TransactionSystemException;
 
-import javax.persistence.RollbackException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -68,7 +65,18 @@ public class PessoaStep extends StepContext {
             this.service.update(this.pessoa.getId(), this.pessoa);
         } catch (TransactionSystemException e) {
             this.mensagensDeErro = ((ConstraintViolationException) e.getOriginalException().getCause()).getConstraintViolations();
-        } catch (RecurseNotFoundException | NotEqualsRecurseException e) {
+        } catch (RecurseNotFoundException e) {
+            this.mensagemErroNegocio = e.getLocalizedMessage();
+        }
+    }
+
+    @Quando("^tento realizar a exclusão$")
+    public void tentoRealizarAExclusão() throws Throwable {
+        try {
+            this.service.delete(this.pessoa.getId());
+        } catch (TransactionSystemException e) {
+            this.mensagensDeErro = ((ConstraintViolationException) e.getOriginalException().getCause()).getConstraintViolations();
+        } catch (RecurseNotFoundException e) {
             this.mensagemErroNegocio = e.getLocalizedMessage();
         }
     }

@@ -3,7 +3,7 @@
 # Atores: Administrador e Usuario
 
 Funcionalidade: Manter pessoa
-    Eu como administrador/usuario
+    Eu como administrador ou usuario
     Desejo gerenciar as informações de pessoas
     A fim de obter suas informações atualizadas
 
@@ -13,7 +13,7 @@ Funcionalidade: Manter pessoa
         Quando tento realizar o cadastro
         Então <resultado>
 
-        Exemplos: 
+        Exemplos:
             |     nome          |   idade     |                         resultado                           |
             |                   |     0       |       Informações obrigatórias ainda não foram informadas   |
             |     Marcos        |     0       |       Informações obrigatórias ainda não foram informadas   |
@@ -35,5 +35,13 @@ Funcionalidade: Manter pessoa
             |       1           |                   |    32       |       Informações obrigatórias ainda não foram informadas   |
             |       9           |                   |             |       Não existe pessoa com o identificador fornecido       |
             |       1           |     Marcos        |    32       |       Operação realizada com sucesso                        |
-    
-    
+
+
+    Esquema do Cenário: Garantir que uma pessoa existente possa ser excluida
+        Dado o identificador da pessoa <identificador>
+        Quando tento realizar a exclusão
+        Então <resultado>
+        Exemplos:
+            | identificador     |                   resultado                           |
+            |       1           |   Operação realizada com sucesso                      |
+            |       12          |   Não existe pessoa com o identificador fornecido     |
