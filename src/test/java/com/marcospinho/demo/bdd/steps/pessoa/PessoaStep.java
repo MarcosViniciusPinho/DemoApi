@@ -1,5 +1,6 @@
-package com.marcospinho.demo.bdd.steps;
+package com.marcospinho.demo.bdd.steps.pessoa;
 
+import com.marcospinho.demo.bdd.steps.StepContext;
 import com.marcospinho.demo.entity.Pessoa;
 import com.marcospinho.demo.service.PessoaService;
 import com.marcospinho.demo.service.exception.RecurseNotFoundException;

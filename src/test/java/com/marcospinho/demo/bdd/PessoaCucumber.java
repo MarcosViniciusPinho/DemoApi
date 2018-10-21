@@ -13,8 +13,8 @@ import org.springframework.test.context.ActiveProfiles;
 @CucumberOptions(
         monochrome = true,
         snippets = SnippetType.CAMELCASE,
-        glue = {"com.marcospinho.demo.bdd.steps"},
-        features = {"classpath:bdd/pessoa.feature"},
+        glue = {"com.marcospinho.demo.bdd.steps.pessoa"},
+        features = {"classpath:bdd/pessoa"},
         format = {"pretty", "html:target/bdd/pessoa", "json:target/bdd/pessoa.json"}
 )
 @ActiveProfiles(value = "test")
