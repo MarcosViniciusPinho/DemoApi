@@ -1,6 +1,5 @@
 package com.marcospinho.demo.bdd.steps;
 
-import com.marcospinho.demo.DemoTestesAutomatizadosApplication;
 import com.marcospinho.demo.entity.Pessoa;
 import com.marcospinho.demo.service.PessoaService;
 import cucumber.api.java.Before;
@@ -10,8 +9,6 @@ import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootContextLoader;
-import org.springframework.test.context.ContextConfiguration;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -20,8 +17,7 @@ import java.util.Set;
 /**
  * @author Marcos Pinho
  */
-@ContextConfiguration(classes = DemoTestesAutomatizadosApplication.class, loader = SpringBootContextLoader.class)
-public class PessoaStep {
+public class PessoaStep extends StepContext {
 
     @Autowired
     private PessoaService service;
