@@ -1,6 +1,6 @@
 # language: pt
 
-Funcionalidade: Cadastrar uma nova pessoa
+Funcionalidade: Cadastrar uma pessoa
     Eu logado no sistema
     Desejo cadastrar uma nova pessoa
     A fim de obter suas informações para futuras tomadas de decisão

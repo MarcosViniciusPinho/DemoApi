@@ -13,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.test.context.ContextConfiguration;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import java.util.Set;
+
 /**
  * @author Marcos Pinho
  */
@@ -23,6 +27,8 @@ public class PessoaStep {
     private PessoaService service;
 
     private Pessoa pessoa;
+
+    private Set<ConstraintViolation<?>> mensagensDeErro;
 
     @Before
     public void init() {
@@ -41,11 +47,16 @@ public class PessoaStep {
 
     @Quando("^tento cadastrá-la$")
     public void tentoCadastraLa() throws Throwable {
-        this.service.create(this.pessoa);
+        try {
+            this.service.create(this.pessoa);
+        } catch (ConstraintViolationException e) {
+            this.mensagensDeErro = e.getConstraintViolations();
+        }
     }
 
     @Então("^Informações obrigatórias ainda não foram informadas$")
     public void informaçõesObrigatóriasAindaNãoForamInformadas() throws Throwable {
+        Assert.assertTrue(!this.mensagensDeErro.isEmpty());
     }
 
     @Então("^Pessoa cadastrada com ([a-z A-Z]*)$")
