@@ -15,8 +15,8 @@ import org.springframework.test.context.ActiveProfiles;
         snippets = SnippetType.CAMELCASE,
         glue = {"com.marcospinho.demo.bdd.steps.pessoa"},
         features = {"classpath:bdd/pessoa"},
-        format = {"pretty", "html:target/bdd/pessoa", "json:target/bdd/pessoa.json"}
+        format = {"pretty", "json:target/bdd/pessoa.json"}
 )
 @ActiveProfiles(value = "test")
-public class PessoaCucumber {
+public class PessoaCucumberTest {
 }
