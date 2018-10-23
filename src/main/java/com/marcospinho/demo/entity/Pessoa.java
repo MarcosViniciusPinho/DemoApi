@@ -39,6 +39,6 @@ public class Pessoa implements Serializable {
     private Integer idade;
 
     public void setIdade(Integer idade) {
-        this.idade = idade != null && idade > 0 ? idade : null;
+        this.idade = idade > 0 ? idade : null;
     }
 }

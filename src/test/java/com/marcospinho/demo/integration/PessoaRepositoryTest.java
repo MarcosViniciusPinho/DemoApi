@@ -101,7 +101,7 @@ public class PessoaRepositoryTest extends IntegrationSource {
         this.repository.save(pessoa.get());
     }
 
-    @Test(expected = TransactionSystemException.class)
+    @Test(expected = NoSuchElementException.class)
     public void testSave_ExceptionUpdateSemIdade() {
         Optional<Pessoa> pessoa = this.repository.findById(2L);
         pessoa.get().setIdade(null);
