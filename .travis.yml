@@ -1,0 +1,20 @@
+language: java
+sudo: false
+install: true
+addons:
+  sonarcloud:
+    organization: $organizacao
+    token:
+      secure: $senha
+jdk:
+ - oraclejdk8
+script:
+ - mvn clean test org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+notifications:
+  email:
+    recipients:
+      - marcosjava2008@gmail.com
