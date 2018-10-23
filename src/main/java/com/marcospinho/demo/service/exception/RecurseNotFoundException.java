@@ -2,7 +2,7 @@ package com.marcospinho.demo.service.exception;
 
 public class RecurseNotFoundException extends RuntimeException {
 
-    private final String mensagemClient;
+    private String mensagemClient;
 
     public RecurseNotFoundException(String mensagemClient, String mensagemException) {
         super(mensagemException);
