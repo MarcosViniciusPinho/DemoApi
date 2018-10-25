@@ -1,6 +1,7 @@
 package com.marcospinho.demo.integration;
 
 import com.marcospinho.demo.DemoTestesAutomatizadosApplication;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
@@ -12,5 +13,6 @@ import org.springframework.test.context.TestPropertySource;
         classes = DemoTestesAutomatizadosApplication.class
 )
 @TestPropertySource(locations = "classpath:application-test.properties")
+@AutoConfigureMockMvc
 public class IntegrationSource {
 }
