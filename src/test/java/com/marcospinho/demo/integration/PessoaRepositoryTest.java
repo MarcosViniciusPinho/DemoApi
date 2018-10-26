@@ -24,19 +24,6 @@
 //    @Autowired
 //    private PessoaRepository repository;
 //
-//    @Test
-//    public void testFindAll_Sucess() {
-//        Pessoa pessoaSalva = this.repository.save(new Pessoa(null, "Marcos", "Pinho", 32));
-//        List<Pessoa> pessoasEsperadas = Arrays.asList(pessoaSalva);
-//        Optional<List<Pessoa>> lista = Optional.of(this.repository.findAll());
-//        Assert.assertEquals(pessoasEsperadas, lista.get());
-//    }
-//
-//    @Test
-//    public void testFindById_Sucess() {
-//        Pessoa pessoaEsperada = new Pessoa(1L, "Marcos", "Pinho", 32);
-//        Assert.assertEquals(pessoaEsperada, this.repository.findById(1L).get());
-//    }
 //
 //    @Test(expected = NoSuchElementException.class)
 //    public void testFindById_Exception() {
