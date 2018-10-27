@@ -79,6 +79,22 @@ public class PessoaResourceIntTest extends IntegrationSource {
     }
 
     @Test
+    public void testCreateFailedNomeNaoInformado() throws Exception {
+        this.mockMvc.perform(post("/pessoas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, null, "Pinho", 25))))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testCreateFailedIdadeNaoInformado() throws Exception {
+        this.mockMvc.perform(post("/pessoas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos", "Pinho", null))))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void testUpdateSucess() throws Exception {
         this.mockMvc.perform(put("/pessoas/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -96,6 +112,22 @@ public class PessoaResourceIntTest extends IntegrationSource {
         this.mockMvc.perform(put("/pessoas/10")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos100", "Pinho1000", 50))));
+    }
+
+    @Test
+    public void testUpdateFailedNomeNaoInformado() throws Exception {
+        this.mockMvc.perform(put("/pessoas/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, null, "Pinho1000", 50))))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testUpdateFailedIdadeNaoInformado() throws Exception {
+        this.mockMvc.perform(put("/pessoas/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos", "Pinho1000", null))))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
