@@ -3,12 +3,14 @@ package com.marcospinho.demo.integration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marcospinho.demo.entity.Pessoa;
 import com.marcospinho.demo.service.PessoaService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -62,7 +64,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
 
     @Test
     public void testCreateSucess() throws Exception {
-        this.mockMvc.perform(post("/pessoas")
+        MockHttpServletResponse response = this.mockMvc.perform(post("/pessoas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Sabrina", "Pinho", 25))))
                 .andExpect(status().isCreated())
@@ -70,7 +72,9 @@ public class PessoaResourceIntTest extends IntegrationSource {
                 .andExpect(jsonPath("$.id").value(2))
                 .andExpect(jsonPath("$.nome").value("Sabrina"))
                 .andExpect(jsonPath("$.sobrenome").value("Pinho"))
-                .andExpect(jsonPath("$.idade").value(25));
+                .andExpect(jsonPath("$.idade").value(25)).andReturn().getResponse();
+
+        Assert.assertTrue(response.getHeader("Location").contains("/pessoas/2"));
     }
 
     @Test
