@@ -31,13 +31,6 @@
 //    }
 //
 //    @Test
-//    public void testSave_SucessCreate() {
-//        Pessoa pessoaEsperada = new Pessoa(2L, "Sabrina", "Cartaxo", 25);
-//        Pessoa pessoaSalva = this.repository.save(new Pessoa(null, "Sabrina", "Cartaxo", 25));
-//        Assert.assertEquals(pessoaEsperada, pessoaSalva);
-//    }
-//
-//    @Test
 //    public void testSave_SucessCreateComSobrenomeEmBranco() {
 //        Pessoa pessoaEsperada = new Pessoa(3L, "Sabrina", null, 25);
 //        Pessoa pessoaSalva = this.repository.save(new Pessoa(null, "Sabrina", null, 25));
@@ -54,15 +47,6 @@
 //        this.repository.save(new Pessoa(null, "Sabrina", "Cartaxo", null));
 //    }
 //
-//    @Test
-//    public void testSave_SucessUpdate() {
-//        Optional<Pessoa> pessoa = this.repository.findById(2L);
-//        pessoa.get().setNome("Sabrina2");
-//        pessoa.get().setSobrenome("Cartaxo2");
-//
-//        Pessoa pessoaSalva = this.repository.save(pessoa.get());
-//        Assert.assertEquals(pessoa.get(), pessoaSalva);
-//    }
 //
 //    @Test
 //    public void testSave_SucessUpdateComSobrenomeEmBranco() {
@@ -96,11 +80,6 @@
 //        this.repository.save(pessoa.get());
 //    }
 //
-//    @Test
-//    public void testDelete_Sucess() {
-//        Optional<Pessoa> pessoa = this.repository.findById(1L);
-//        this.repository.delete(pessoa.get());
-//    }
 //
 //    @Test(expected = NoSuchElementException.class)
 //    public void testDelete_ExceptionQuandoNaoExistePessoa() {
