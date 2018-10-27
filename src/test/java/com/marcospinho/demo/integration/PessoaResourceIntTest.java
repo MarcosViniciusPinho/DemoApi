@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.util.NestedServletException;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -90,9 +91,23 @@ public class PessoaResourceIntTest extends IntegrationSource {
                 .andExpect(jsonPath("$.idade").value(33));
     }
 
+    @Test(expected = NestedServletException.class)
+    public void testUpdateExceptionRecursoNaoEncontrado() throws Exception {
+        this.mockMvc.perform(put("/pessoas/10")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos100", "Pinho1000", 50))));
+    }
+
     @Test
     public void testDeleteSucess() throws Exception {
         this.mockMvc.perform(delete("/pessoas/2")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test(expected = NestedServletException.class)
+    public void testDeleteExceptionRecursoNaoEncontrado() throws Exception {
+        this.mockMvc.perform(delete("/pessoas/10")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
