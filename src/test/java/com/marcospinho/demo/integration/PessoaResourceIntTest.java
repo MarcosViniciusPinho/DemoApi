@@ -111,7 +111,8 @@ public class PessoaResourceIntTest extends IntegrationSource {
     public void testUpdateExceptionRecursoNaoEncontrado() throws Exception {
         this.mockMvc.perform(put("/pessoas/10")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos100", "Pinho1000", 50))));
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos100", "Pinho1000", 50))))
+                .andExpect(status().isInternalServerError());
     }
 
     @Test
@@ -141,6 +142,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
     public void testDeleteExceptionRecursoNaoEncontrado() throws Exception {
         this.mockMvc.perform(delete("/pessoas/10")
                 .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError())
                 .andExpect(status().isNoContent());
     }
 
