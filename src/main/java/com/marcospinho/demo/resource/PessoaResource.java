@@ -1,5 +1,6 @@
 package com.marcospinho.demo.resource;
 
+import com.marcospinho.demo.dto.PessoaDTO;
 import com.marcospinho.demo.entity.Pessoa;
 import com.marcospinho.demo.resource.exception.CreateOptionalException;
 import com.marcospinho.demo.service.PessoaService;
@@ -26,8 +27,8 @@ public class PessoaResource {
 
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<Optional<Pessoa>> create(@Valid @RequestBody Pessoa pessoa){
-       Optional<Pessoa> pessoaSalvo = this.service.create(pessoa);
+    public ResponseEntity<Optional<Pessoa>> create(@Valid @RequestBody PessoaDTO dto){
+       Optional<Pessoa> pessoaSalvo = this.service.create(dto.toEntity());
 
        if(!pessoaSalvo.isPresent()) {
            throw new CreateOptionalException("O recurso não foi salvo");
@@ -41,8 +42,8 @@ public class PessoaResource {
 
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<Optional<Pessoa>> update(@PathVariable(value = "id") Long id, @Valid @RequestBody Pessoa pessoa){
-        return ResponseEntity.ok().body(this.service.update(id, pessoa));
+    public ResponseEntity<Optional<Pessoa>> update(@PathVariable(value = "id") Long id, @Valid @RequestBody PessoaDTO dto){
+        return ResponseEntity.ok().body(this.service.update(id, dto.toEntity()));
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
