@@ -1,7 +1,6 @@
 package com.marcospinho.demo.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.marcospinho.demo.dto.PessoaDTO;
 import com.marcospinho.demo.entity.Pessoa;
 import com.marcospinho.demo.service.PessoaService;
 import org.junit.Assert;
@@ -78,19 +77,19 @@ public class PessoaResourceIntTest extends IntegrationSource {
         Assert.assertTrue(response.getHeader("Location").contains("/pessoas/2"));
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testCreateFailedNomeNaoInformado() throws Exception {
         this.mockMvc.perform(post("/pessoas")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new PessoaDTO(null, null, "Pinho", 25))))
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, null, "Pinho", 25))))
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testCreateFailedIdadeNaoInformado() throws Exception {
         this.mockMvc.perform(post("/pessoas")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new PessoaDTO(null, "Marcos", "Pinho", null))))
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos", "Pinho", null))))
                 .andExpect(status().isBadRequest());
     }
 
@@ -115,19 +114,19 @@ public class PessoaResourceIntTest extends IntegrationSource {
                 .andExpect(status().isInternalServerError());
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testUpdateFailedNomeNaoInformado() throws Exception {
         this.mockMvc.perform(put("/pessoas/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new PessoaDTO(null, null, "Pinho1000", 50))))
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, null, "Pinho1000", 50))))
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testUpdateFailedIdadeNaoInformado() throws Exception {
         this.mockMvc.perform(put("/pessoas/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new PessoaDTO(null, "Marcos", "Pinho1000", null))))
+                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos", "Pinho1000", null))))
                 .andExpect(status().isBadRequest());
     }
 
