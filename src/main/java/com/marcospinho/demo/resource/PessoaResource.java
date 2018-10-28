@@ -30,7 +30,7 @@ public class PessoaResource {
        Optional<Pessoa> pessoaSalvo = this.service.create(pessoa);
 
        if(!pessoaSalvo.isPresent()) {
-           throw new CreateOptionalException("A pessoa não foi salva", "Não foi persistido a pessoa com as informações enviadas");
+           throw new CreateOptionalException("O recurso não foi salvo");
        }
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
