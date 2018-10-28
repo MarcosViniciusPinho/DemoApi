@@ -36,14 +36,6 @@ public class PessoaServiceImplUnitTest {
         Assert.assertEquals(pessoaEsperada, pessoaSalva.get());
     }
 
-    @Test(expected = NullPointerException.class)
-    public void testCreateComException() {
-        Pessoa pessoaExecucao = new Pessoa(null, "Marcos", "Pinho", 32);
-        Pessoa pessoaEsperada = new Pessoa(1L, "Marcos", "Pinho", 32);
-        Optional pessoaSalva = this.service.create(pessoaExecucao);
-        Assert.assertEquals(pessoaEsperada, pessoaSalva.get());
-    }
-
     @Test
     public void testUpdateSucess() {
         Pessoa pessoaExecucao = new Pessoa(1L, "Marcos2", "Pinho2", 33);
@@ -59,8 +51,7 @@ public class PessoaServiceImplUnitTest {
         Pessoa pessoaExecucao = new Pessoa(1L, "Marcos2", "Pinho2", 33);
         Optional<Pessoa> pessoaEsperada = Optional.of(new Pessoa(1L, "Marcos2", "Pinho2", 33));
         Mockito.when(this.repository.save(pessoaExecucao)).thenReturn(pessoaEsperada.get());
-        Optional pessoaSalva = this.service.update(pessoaExecucao.getId(), pessoaExecucao);
-        Assert.assertEquals(pessoaEsperada, pessoaSalva);
+        this.service.update(pessoaExecucao.getId(), pessoaExecucao);
     }
 
     @Test
@@ -81,14 +72,14 @@ public class PessoaServiceImplUnitTest {
     public void testFindByIdSucess() {
         Optional<Pessoa> pessoaEsperada = Optional.of(new Pessoa(1L, "Marcos2", "Pinho2", 33));
         Mockito.when(this.repository.findById(1L)).thenReturn(pessoaEsperada);
-        Optional pessoaSalva = this.service.findById(1L);
-        Assert.assertEquals(pessoaEsperada, pessoaSalva);
+        Optional pessoa = this.service.findById(1L);
+        Assert.assertEquals(pessoaEsperada, pessoa);
     }
 
     @Test
     public void testFindByIdNaoAchouRegistro() {
-        Optional pessoaSalva = this.service.findById(1L);
-        Assert.assertFalse(pessoaSalva.isPresent());
+        Optional pessoa = this.service.findById(1L);
+        Assert.assertFalse(pessoa.isPresent());
     }
 
     @Test
