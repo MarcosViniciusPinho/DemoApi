@@ -77,7 +77,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
         Assert.assertTrue(response.getHeader("Location").contains("/pessoas/2"));
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testCreateFailedNomeNaoInformado() throws Exception {
         this.mockMvc.perform(post("/pessoas")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -85,7 +85,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testCreateFailedIdadeNaoInformado() throws Exception {
         this.mockMvc.perform(post("/pessoas")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -114,7 +114,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
                 .andExpect(status().isInternalServerError());
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testUpdateFailedNomeNaoInformado() throws Exception {
         this.mockMvc.perform(put("/pessoas/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -122,7 +122,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testUpdateFailedIdadeNaoInformado() throws Exception {
         this.mockMvc.perform(put("/pessoas/1")
                 .contentType(MediaType.APPLICATION_JSON)
