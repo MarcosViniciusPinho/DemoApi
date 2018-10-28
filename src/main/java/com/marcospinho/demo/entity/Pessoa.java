@@ -8,8 +8,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-@Getter//NOSONAR não vejo necessidade de criar um teste só para testar os retornos dos atributos
-@EqualsAndHashCode(exclude = {"nome", "sobrenome", "idade"})//NOSONAR falso positivo, existe alguns testes(automatizados) testando isso
+@Getter
+@EqualsAndHashCode(exclude = {"nome", "sobrenome", "idade"})
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
