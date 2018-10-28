@@ -39,6 +39,6 @@ public class Pessoa implements Serializable {
     private Integer idade;
 
     public void setIdade(Integer idade) {
-        this.idade = idade != null && idade > 0 ? idade : null;
+        this.idade = idade != null && idade > 0 ? idade : null;//NOSONAR Vou ignorar este item do Sonar, pois quero ignorar a anotação @NotNull
     }
 }

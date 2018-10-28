@@ -13,5 +13,6 @@ import org.springframework.test.context.TestPropertySource;
         classes = DemoTestesAutomatizadosApplication.class
 )
 @TestPropertySource(locations = "classpath:application-test.properties")
+@AutoConfigureMockMvc
 public class IntegrationSource {
 }

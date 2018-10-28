@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PessoaServiceImplTest {
+public class PessoaServiceImplUnitTest {
 
     @InjectMocks
     private PessoaServiceImpl service;
