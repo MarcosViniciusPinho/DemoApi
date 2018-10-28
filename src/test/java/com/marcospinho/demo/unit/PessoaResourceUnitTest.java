@@ -2,6 +2,7 @@ package com.marcospinho.demo.unit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marcospinho.demo.entity.Pessoa;
+import com.marcospinho.demo.resource.exception.CreateOptionalException;
 import com.marcospinho.demo.service.PessoaService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.util.NestedServletException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -112,6 +114,17 @@ public class PessoaResourceUnitTest {
                 .andExpect(jsonPath("$.idade").value(25)).andReturn().getResponse();
 
         Assert.assertTrue(response.getHeader("Location").contains("/pessoas/2"));
+    }
+
+    @Test(expected = NestedServletException.class)
+    public void testCreateException() throws Exception {
+        Pessoa pessoa = new Pessoa(null, "Sabrina", "Pinho", 25);
+
+        Mockito.when(this.service.create(pessoa)).thenReturn(Optional.empty());
+
+        this.mockMvc.perform(post("/pessoas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(pessoa)));
     }
 
     @Test

@@ -1,10 +1,10 @@
-package com.marcospinho.demo.service.exception;
+package com.marcospinho.demo.resource.exception;
 
-public class RecurseNotFoundException extends RuntimeException {
+public class CreateOptionalException extends RuntimeException {
 
     private final String mensagemClient;
 
-    public RecurseNotFoundException(String mensagemClient, String mensagemException) {
+    public CreateOptionalException(String mensagemClient, String mensagemException) {
         super(mensagemException);
         this.mensagemClient = mensagemClient;
     }

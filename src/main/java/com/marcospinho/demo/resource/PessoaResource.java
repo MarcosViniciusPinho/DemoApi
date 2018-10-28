@@ -1,6 +1,7 @@
 package com.marcospinho.demo.resource;
 
 import com.marcospinho.demo.entity.Pessoa;
+import com.marcospinho.demo.resource.exception.CreateOptionalException;
 import com.marcospinho.demo.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,6 +28,10 @@ public class PessoaResource {
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Optional<Pessoa>> create(@Valid @RequestBody Pessoa pessoa){
        Optional<Pessoa> pessoaSalvo = this.service.create(pessoa);
+
+       if(!pessoaSalvo.isPresent()) {
+           throw new CreateOptionalException("A pessoa não foi salva", "Não foi persistido a pessoa com as informações enviadas");
+       }
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(pessoaSalvo.get().getId()).toUri();
