@@ -47,7 +47,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
                 .andExpect(jsonPath("$[0].nome").value("Marcos"))
                 .andExpect(jsonPath("$[0].sobrenome").value("Pinho"))
                 .andExpect(jsonPath("$[0].idade").value(32))
-                .andExpect(jsonPath("$.length()").value(1));
+                .andExpect(jsonPath("$.length()").value(6));
     }
 
     @Test
