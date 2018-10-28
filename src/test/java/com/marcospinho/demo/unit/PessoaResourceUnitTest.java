@@ -16,6 +16,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -56,6 +57,20 @@ public class PessoaResourceUnitTest {
     }
 
     @Test
+    public void testListSucessSemRegistro() throws Exception {
+
+        Mockito.when(this.service.findAll()).thenReturn(Optional.of(new ArrayList<>()));
+
+        MockHttpServletResponse response = this.mockMvc.perform(get("/pessoas")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(0))
+                .andReturn().getResponse();
+
+        Assert.assertEquals("[]", response.getContentAsString());
+    }
+
+    @Test
     public void testFindSucess() throws Exception {
         Mockito.when(this.service.findById(1L)).thenReturn(Optional.of(new Pessoa(1L, "Marcos", "Pinho", 32)));
 
@@ -67,6 +82,17 @@ public class PessoaResourceUnitTest {
                 .andExpect(jsonPath("$.nome").value("Marcos"))
                 .andExpect(jsonPath("$.sobrenome").value("Pinho"))
                 .andExpect(jsonPath("$.idade").value(32));
+    }
+
+    @Test
+    public void testFindSucessSemRegistro() throws Exception {
+        Mockito.when(this.service.findById(10L)).thenReturn(Optional.of(new Pessoa()));
+
+        MockHttpServletResponse response = this.mockMvc.perform(get("/pessoas/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk()).andReturn().getResponse();
+
+        Assert.assertEquals("null", response.getContentAsString());
     }
 
     @Test
