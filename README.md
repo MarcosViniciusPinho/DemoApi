@@ -2,7 +2,7 @@
 <h3>Projeto visando a implementação de alguns testes de software mais utilizados no mercado, que são os seguintes:</h3>
 <ul>
   <li>
-    Comportamental(BDD): Se preocupa com a questão do código atender as regras de negócio; ou seja; como o sistema irá se comportar          conforme determinado cenário.
+    Comportamental(BDD): Se preocupa com a questão do código, se atende as regras de negócio; ou seja; como o sistema irá se comportar          conforme determinado cenário.
   </li>
   <li>
     Unidade(TDD): Se preocupa com a questão dos métodos isolados por classe; ou seja; todas as classes(que tenha relevância) devem ser testadas afim de garantir que o método que se propõe a fazer alguma coisa, o faça. Neste tipo de teste não é levado em consideração a dependência entre as classes.
