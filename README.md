@@ -8,5 +8,4 @@ Para este projeto também existe uma configuração de CI, feita com Travis e So
 - Para ter acesso ao Travis(Para ver o processo de build), acessar: 
 - Para ter acesso ao Sonar(Para ver o dashboard de qualidade), acessar: 
 
-
-API RestFull construída com Spring Boot, utilizando: Flyway, Cucumber, Junit e etc. 
+<br /><br />API RestFull construída com Spring Boot, utilizando: Flyway, Cucumber, Junit e etc. 
