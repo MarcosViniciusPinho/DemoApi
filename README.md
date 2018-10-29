@@ -4,8 +4,8 @@ Projeto visando a implementação de alguns testes de software mais utilizados n
 - Unidade(TDD): Se preocupa com a questão dos métodos isolados por classe; ou seja; todas as classes(que tenha relevância) devem ser testadas afim de garantir que o método que se propõe a fazer alguma coisa, o faça. Neste tipo de teste não é levado em consideração a dependência entre as classes.
 - Integração: Se preocupa com a questão da interação da aplicação fora de sua fronteira, assim como as dependências entre classes; ou seja; os testes são realizados no inicio que começa a requisição(Camada de apresentação) passando por todo o fluxo de seus componentes até finalizar a mesma por completo.
 
+Para este projeto também existe uma configuração de CI, feita com Travis e Sonar.
+- Para ter acesso ao Travis(Para ver o processo de build), acessar: 
+- Para ter acesso ao Sonar(Para ver o dashboard de qualidade), acessar: 
 
-
-
-
- 
+API RestFull construída com Spring Boot, utilizando: Flyway, Cucumber, Junit e etc. 
