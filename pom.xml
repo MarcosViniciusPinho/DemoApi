@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>DemoTestesAutomatizados</name>
-	<description>Demonstração da aplicação de tres testes automatizados mais usados do mercado</description>
+	<description>Implementando testes de TDD, BDD e de integração</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
