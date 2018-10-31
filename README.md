@@ -15,10 +15,10 @@
 <h3>Para este projeto também existe uma configuração de CI, feita com Travis e Sonar.</h3>
 <ul>
   <li>
-    Para ter acesso ao Travis(Para ver o processo de build), acessar: 
+    Para ter acesso ao Travis(Para ver o processo de build), acessar: https://travis-ci.org/MarcosViniciusPinho/DemoApi
   </li>
   <li>
-    Para ter acesso ao Sonar(Para ver o dashboard de qualidade), acessar: 
+    Para ter acesso ao Sonar(Para ver o dashboard de qualidade), acessar: https://sonarcloud.io/dashboard?id=com.marcospinho%3Ademo-testes-automatizados
   </li>
 </ul>  
 
