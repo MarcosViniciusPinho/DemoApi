@@ -27,7 +27,7 @@
 <h4>Para visualizar o dashboard localmente dos testes BDDs(Que particularmente são os que eu mais gosto), faça o seguinte:</h4>
 <ul>
     <li>Execute os goals do maven clean e install</li>
-    <li>Logo em seguida vá na pasta target/bdd/cucumber-html-reports e abra o arquivo de nome overview-features.html pelo browser, que terá a visualização como o da imagem abaixo:</li>
+    <li>E acesse o link: http://localhost:63342/DemoApi/target/bdd/cucumber-html-reports/overview-features.html, que terá a visualização como o da imagem abaixo:</li>
 </ul>
 <img src="http://i65.tinypic.com/25tkaz7.jpg" border="0" alt="Image and video hosting by TinyPic">
 <img src="http://i65.tinypic.com/zjwhlc.png" border="0" alt="Image and video hosting by TinyPic">
