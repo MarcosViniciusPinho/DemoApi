@@ -61,7 +61,7 @@ public class PessoaStep extends StepContext {
     }
 
     @Quando("^tento realizar a alteração$")
-    public void tentoRealizarAAlteração() throws Throwable {
+    public void tentoRealizarAAlteracao() throws Throwable {
         try {
             this.service.update(this.pessoa.getId(), this.pessoa);
         } catch (TransactionSystemException e) {
@@ -72,7 +72,7 @@ public class PessoaStep extends StepContext {
     }
 
     @Quando("^tento realizar a exclusão$")
-    public void tentoRealizarAExclusão() throws Throwable {
+    public void tentoRealizarAExclusao() throws Throwable {
         try {
             this.service.delete(this.pessoa.getId());
         } catch (TransactionSystemException e) {
@@ -83,12 +83,12 @@ public class PessoaStep extends StepContext {
     }
 
     @Então("^Informações obrigatórias ainda não foram informadas$")
-    public void informaçõesObrigatóriasAindaNãoForamInformadas() throws Throwable {
+    public void informacoesObrigatoriasAindaNaoForamInformadas() throws Throwable {
         Assert.assertTrue(!this.mensagensDeErro.isEmpty());
     }
 
     @Então("^Não existe pessoa com o identificador fornecido$")
-    public void nãoExistePessoaComOIdentificadorFornecido() throws Throwable {
+    public void naoExistePessoaComOIdentificadorFornecido() throws Throwable {
         Assert.assertEquals("Não foi encontrada uma pessoa com o id fornecido", this.mensagemErroNegocio);
     }
 
