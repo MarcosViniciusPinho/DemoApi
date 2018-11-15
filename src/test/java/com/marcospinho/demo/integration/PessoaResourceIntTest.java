@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marcospinho.demo.entity.Pessoa;
 import com.marcospinho.demo.service.PessoaService;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +31,6 @@ public class PessoaResourceIntTest extends IntegrationSource {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Before
-    public void init() {
-        this.service.create(new Pessoa(null, "Marcos", "Pinho", 32));
-    }
-
     @Test
     public void testListSucess() throws Exception {
         this.mockMvc.perform(get("/pessoas")
@@ -47,7 +41,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
                 .andExpect(jsonPath("$[0].nome").value("Marcos"))
                 .andExpect(jsonPath("$[0].sobrenome").value("Pinho"))
                 .andExpect(jsonPath("$[0].idade").value(32))
-                .andExpect(jsonPath("$.length()").value(6));
+                .andExpect(jsonPath("$.length()").value(2));
     }
 
     @Test
@@ -64,6 +58,8 @@ public class PessoaResourceIntTest extends IntegrationSource {
 
     @Test
     public void testCreateSucess() throws Exception {
+        this.service.create(new Pessoa(null, "Marcos", "Pinho", 32));
+
         MockHttpServletResponse response = this.mockMvc.perform(post("/pessoas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Sabrina", "Pinho", 25))))
@@ -78,18 +74,10 @@ public class PessoaResourceIntTest extends IntegrationSource {
     }
 
     @Test(expected = NestedServletException.class)
-    public void testCreateFailedNomeNaoInformado() throws Exception {
+    public void testCreateFailed() throws Exception {
         this.mockMvc.perform(post("/pessoas")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new Pessoa(null, null, "Pinho", 25))))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test(expected = NestedServletException.class)
-    public void testCreateFailedIdadeNaoInformado() throws Exception {
-        this.mockMvc.perform(post("/pessoas")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos", "Pinho", null))))
+                .content(objectMapper.writeValueAsBytes(new Pessoa())))
                 .andExpect(status().isBadRequest());
     }
 
@@ -107,7 +95,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
     }
 
     @Test(expected = NestedServletException.class)
-    public void testUpdateExceptionRecursoNaoEncontrado() throws Exception {
+    public void testUpdateRecursoNaoEncontrado() throws Exception {
         this.mockMvc.perform(put("/pessoas/10")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos100", "Pinho1000", 50))))
@@ -115,18 +103,10 @@ public class PessoaResourceIntTest extends IntegrationSource {
     }
 
     @Test(expected = NestedServletException.class)
-    public void testUpdateFailedNomeNaoInformado() throws Exception {
+    public void testUpdateFailed() throws Exception {
         this.mockMvc.perform(put("/pessoas/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new Pessoa(null, null, "Pinho1000", 50))))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test(expected = NestedServletException.class)
-    public void testUpdateFailedIdadeNaoInformado() throws Exception {
-        this.mockMvc.perform(put("/pessoas/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(new Pessoa(null, "Marcos", "Pinho1000", null))))
+                .content(objectMapper.writeValueAsBytes(new Pessoa())))
                 .andExpect(status().isBadRequest());
     }
 
@@ -138,7 +118,7 @@ public class PessoaResourceIntTest extends IntegrationSource {
     }
 
     @Test(expected = NestedServletException.class)
-    public void testDeleteExceptionRecursoNaoEncontrado() throws Exception {
+    public void testDeleteRecursoNaoEncontrado() throws Exception {
         this.mockMvc.perform(delete("/pessoas/10")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError())
